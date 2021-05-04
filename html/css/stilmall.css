@@ -62,8 +62,9 @@ li.active a {
     color: red;
 }
 #login main{
-	margin:auto;
-	width:75%;
+	margin:0 auto;
+	width:40%;
+	height:30%;
 	background-color:#f2f2f2;
 	color: black;
 	margin-bottom: 10px;
