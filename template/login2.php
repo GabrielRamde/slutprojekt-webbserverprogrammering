@@ -1,10 +1,9 @@
 <?php
 	
 	if(empty($_POST['anvandarnamn'])||empty($_POST['password'])){
-		header("Location:../html/login.php");
+	//	header("Location:../html/login.php");
 	}
 	require "../includes/connect.php";
-	
 	
 	$anvandarnamn = filter_input(INPUT_POST,'anvandarnamn', FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_LOW);
 	$password = filter_input(INPUT_POST,'password', FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_LOW);
@@ -23,12 +22,12 @@
 	}
 	else
 	{
-		if(password_verify($password,$row['password']))
+		if($password == $row['password'])
 		{
 			session_start();
 			$_SESSION['anvandarnamn']=$anvandarnamn;
 			$_SESSION['status']=$row['status'];
-			header("Location:../html/admin.php");
+			header("Location:../html/index.php");
 		}
 		else
 		{

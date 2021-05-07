@@ -25,7 +25,7 @@
 			<section>
 				<form action="../template/login2.php" method="post">
 					<p><label for="user">Användarnamn:</label>
-					<input type="text" id="user" name="username"></p>
+					<input type="text" id="user" name="anvandarnamn"></p>
 					<p><label for="pwd">Lösenord:</label>
 					<input type="password" id="pwd" name="password"></p>
 					<p>
