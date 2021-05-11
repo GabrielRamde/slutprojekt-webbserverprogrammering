@@ -33,6 +33,7 @@
 					</p>
 				</form>
 				<p class="create"><a href="createUser.php">Skapa användare</a></p>
+				<p><?php echo $str; ?></p>
 			</section>
 		</main>
     </div>

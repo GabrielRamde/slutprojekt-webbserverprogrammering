@@ -3,7 +3,7 @@ require "../includes/connect.php";
 
 $anvandare = $_SESSION['anvandare'];
 
-$sql="SELECT * FROM anvandare WHERE anvandare=?" ;
+$sql="SELECT * FROM anvandare WHERE anvandarnamn=?" ;
 
 $res=$dbh->prepare($sql);
 	$res->bind_param("s",$anvandare);
@@ -37,14 +37,15 @@ $res=$dbh->prepare($sql);
 						while($row=$result->fetch_assoc()) 
 							{
 								echo "<tr><td>";
-								echo $row["Username"];
+								echo $row["anvandarnamn"];
 								echo "</td><td>";
-								echo $row["Email"];
+								echo $row["email"];
 								echo "</td></tr>";
 							}	
 						?>
 					</tbody>
 				</table>
+					<a href="logout.php">Logga ut</a>
 			</section>
 		</main>
 	</div>

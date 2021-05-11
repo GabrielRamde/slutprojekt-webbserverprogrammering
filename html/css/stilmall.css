@@ -87,6 +87,11 @@ li.active a {
 #login h2{
 	  color: black;			
 }
+#audi [type="submit"], .createinlagg{
+	    margin-right:132px;
+}
+#audi .createinlagg> a{
+		color:black;
 main{
 	grid-area: content;
 }
@@ -103,7 +108,7 @@ main{
     margin-top: 20px;
     text-align: center;
 }
-.asidetext {
+aside {
 	grid-area: asidetext;
 	margin-top: 20px;
 }

@@ -25,7 +25,7 @@
 		if($password == $row['password'])
 		{
 			session_start();
-			$_SESSION['anvandarnamn']=$anvandarnamn;
+			$_SESSION['anvandare']=$anvandarnamn;
 			$_SESSION['status']=$row['status'];
 			header("Location:../html/index.php");
 		}
