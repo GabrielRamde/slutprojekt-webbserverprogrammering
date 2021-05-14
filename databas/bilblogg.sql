@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 04 maj 2021 kl 14:38
--- Serverversion: 10.4.6-MariaDB
--- PHP-version: 7.3.8
+-- Tid vid skapande: 14 maj 2021 kl 18:40
+-- Serverversion: 10.4.17-MariaDB
+-- PHP-version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,7 +39,7 @@ CREATE TABLE `anvandare` (
 --
 
 INSERT INTO `anvandare` (`anvandarnamn`, `email`, `password`, `status`) VALUES
-('GabbidiN', 'gara02001@utb.vaxjo.se', 'gabbe0218', 1),
+('GabbidiN', 'gara02001@utb.vaxjo.se', 'gabbe0218', 2),
 ('Ompah', 'edve02001@utb.vaxjo.se', 'Tjorven!', 1);
 
 -- --------------------------------------------------------
@@ -53,7 +52,7 @@ CREATE TABLE `inlagg` (
   `anvandarnamn` varchar(20) COLLATE utf8_swedish_ci NOT NULL,
   `inlaggID` int(10) UNSIGNED NOT NULL,
   `beskrivning` varchar(2000) COLLATE utf8_swedish_ci NOT NULL,
-  `datum` varchar(20) COLLATE utf8_swedish_ci NOT NULL DEFAULT current_timestamp()
+  `Typ` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
@@ -67,14 +66,14 @@ ALTER TABLE `anvandare`
   ADD PRIMARY KEY (`anvandarnamn`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `password` (`password`),
-  ADD UNIQUE KEY `användarnamn` (`anvandarnamn`);
+  ADD UNIQUE KEY `anvandarnamn` (`anvandarnamn`) USING BTREE;
 
 --
 -- Index för tabell `inlagg`
 --
 ALTER TABLE `inlagg`
   ADD PRIMARY KEY (`inlaggID`),
-  ADD KEY `användarnamn` (`anvandarnamn`);
+  ADD KEY `anvandarnamn` (`anvandarnamn`) USING BTREE;
 
 --
 -- AUTO_INCREMENT för dumpade tabeller
@@ -84,7 +83,7 @@ ALTER TABLE `inlagg`
 -- AUTO_INCREMENT för tabell `inlagg`
 --
 ALTER TABLE `inlagg`
-  MODIFY `inlaggID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `inlaggID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restriktioner för dumpade tabeller
