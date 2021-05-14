@@ -1,8 +1,18 @@
+<?php
+	if(session_status() == PHP_SESSION_NONE){
+		session_start();
+	}
+	if(!isset($_SESSION['anvandare'])) {
+		header("Location:login.php");
+	}
+	$Typ = $_GET["Typ"];
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
   <head>
      <meta charset="utf-8">
-     <title>Logga in</title>
+     <title>Skapa inlagg</title>
 		 <link rel="stylesheet" href="css/stilmall.css">
 	</head>
   <body id="login">
@@ -12,8 +22,13 @@
 		?>	
 		<main> <!--Huvudinnehåll-->
 			<section>
-				<form action="../template/login2.php" method="post">
-					<p class="create"><a href="createinlagg.php">Skapa inlägg</a></p>
+				<form action="inlagg2.php" method="post">
+					<p><label for="Text">Skriv här...</label>
+					<textarea rows="12" cols="50" id="beskrivning" name="beskrivning"></textarea></p>
+					<p><input type="submit" value="Lägg upp"></p>
+					<?php
+						echo "<input type='hidden' id='Typ' name='Typ' value='{$Typ}'>";
+					?>
 				</form>
 			</section>
 		</main>

@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	require "../includes/connect.php";
+	
+	$sql = "SELECT * FROM inlagg WHERE Typ = 1";
+	$res = $dbh -> prepare($sql);
+	$res->execute();
+	$result = $res->get_result();
+?>
 <!DOCTYPE html>
 <html lang="sv">
 	<head>
@@ -17,11 +26,26 @@
 				electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
 				and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
 			</aside>
-			<main class="content"> <!--Huvudinnehåll-->
+			<main class="content">
 				<h2>INLÄGG</h2>
-				<form action="../template/inlagg.php" method="post">
-					<p class="createinlagg"><a href="createinlagg.php">Skapa inlägg</a></p>
-				</form>
+				<a href="inlagg.php?Typ=1">Skapa Inlägg</a>
+				<?php
+				while($row = $result->fetch_assoc()) {
+				$inc = "";
+				if(isset($_SESSION['anvandare'])) {
+					if($_SESSION["status"] == 2) {
+					$inc = "<a href='removePost.php?id={$row["inlaggID"]}'>Ta bort inlägg</a>";
+				}	
+				}
+				echo <<<ARTICLE
+					<article>
+						<p>{$row["beskrivning"]}</p>
+						<p>Skriven av: {$row['anvandarnamn']} | inlägg:{$row['inlaggID']}</p>
+						{$inc}
+					</article>
+ARTICLE;
+				}		
+				?>
 			</main>
 		</div>
 	</body>
