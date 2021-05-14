@@ -92,10 +92,10 @@ li.active a {
 }
 #audi .createinlagg> a{
 		color:black;
+}
 main{
 	grid-area: content;
 }
-
 .content {  
     display: block;
     height: auto;
