@@ -13,7 +13,7 @@ $str="";
 		$email = filter_input(INPUT_POST,'mail', FILTER_SANITIZE_EMAIL, FILTER_FLAG_STRIP_LOW);
 		$anvandarnamn = filter_input(INPUT_POST,'aname', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 		$password = filter_input(INPUT_POST,'password', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
-		
+		$password = password_hash($password, PASSWORD_DEFAULT);
 			
 		require "../includes/connect.php";
 			
@@ -30,7 +30,7 @@ $str="";
 				header("location:createUser.php?anvandarnamn=$anvandarnamn");
 			}
 			elseif($row['email'] === $email) {
-				header("location;createUser.php?email=$email");
+				header("location:createUser.php?email=$email");
 			}
 		}
 		else
@@ -40,6 +40,7 @@ $str="";
 			$res=$dbh->prepare($sql);
 			$res->bind_param("sssi",$anvandarnamn, $email, $password, $status);
 			$res->execute();
+			header("Location:../html/login.php");
 		}
 	}
 	else

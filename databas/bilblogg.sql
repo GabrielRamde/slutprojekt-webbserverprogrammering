@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 14 maj 2021 kl 18:40
--- Serverversion: 10.4.17-MariaDB
--- PHP-version: 8.0.0
+-- Tid vid skapande: 25 maj 2021 kl 14:43
+-- Serverversion: 10.4.6-MariaDB
+-- PHP-version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -39,8 +40,11 @@ CREATE TABLE `anvandare` (
 --
 
 INSERT INTO `anvandare` (`anvandarnamn`, `email`, `password`, `status`) VALUES
-('GabbidiN', 'gara02001@utb.vaxjo.se', 'gabbe0218', 2),
-('Ompah', 'edve02001@utb.vaxjo.se', 'Tjorven!', 1);
+('example', 'example@example.com', '$2y$10$EkBM5V1h15npyXJ1X5nmTO.jd4iAMRVTusmToo2Po7LFW4SsNC/WS', 1),
+('example2', 'example2@example2.com', '$2y$10$6MQuRo3xvmbOTyHcPMMRVOnhGkBIrHn9U9nqqPWR0zRfgU44ycMG6', 1),
+('GabbidiN', 'gara02001@utb.vaxjo.se', '$2y$10$WDams6I.CoaPBAjalQvf.O0ZswS8ImNiVihQBVmnk64LZRaF2svqu', 2),
+('Ompah', 'edve02001@utb.vaxjo.se', '$2y$10$KPjmxp5wRIbgHNlKdSi5YemQPP3YJcKmroHH3bIpJF3YrmUs8LkkK', 1),
+('Tompz', 'tora02001@utb.vaxjo.se', '$2y$10$G7DrND5S/64gn5Z16RvMeuFvTr3LxBD5l14xz/jegfqbL3xFEQiFS', 1);
 
 -- --------------------------------------------------------
 
@@ -65,7 +69,6 @@ CREATE TABLE `inlagg` (
 ALTER TABLE `anvandare`
   ADD PRIMARY KEY (`anvandarnamn`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `password` (`password`),
   ADD UNIQUE KEY `anvandarnamn` (`anvandarnamn`) USING BTREE;
 
 --
@@ -83,7 +86,7 @@ ALTER TABLE `inlagg`
 -- AUTO_INCREMENT för tabell `inlagg`
 --
 ALTER TABLE `inlagg`
-  MODIFY `inlaggID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `inlaggID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restriktioner för dumpade tabeller

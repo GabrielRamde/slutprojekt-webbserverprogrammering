@@ -6,9 +6,11 @@
 	if($_POST["beskrivning"] != null)
 	{
 		// Lägger till inlägg
+		$beskrivning = filter_input(INPUT_POST,'beskrivning', FILTER_SANITIZE_STRING);
+		
 		$sql = "INSERT INTO inlagg(anvandarnamn, beskrivning, Typ) VALUE (?,?,?)";
 		$res = $dbh -> prepare($sql);
-		$res -> bind_param("ssi", $_SESSION['anvandare'], $_POST['beskrivning'], $_POST['Typ']);
+		$res -> bind_param ("ssi", $_SESSION['anvandare'], $beskrivning, $_POST['Typ']);
 		$res -> execute();
 		header("Location:audi.php");
 	}
@@ -16,5 +18,4 @@
 	{
 		header("Location:inlagg.php");
 	}
-
 ?>
